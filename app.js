@@ -1,30 +1,30 @@
 const btn = document.querySelector("button");
 const input = document.querySelector("input");
 const ul = document.querySelector("ul");
+let tasks = [];
 
-const createItem = ()=>{
-    let li = document.createElement("li");
-    li.innerText = input.value;
-    ul.appendChild(li);
-    input.value = "";
-    li.addEventListener("click",()=>{
-       li.classList.toggle("done");
-        console.log(li.classList);
-        
-    } )
-    
-}
+const addTask = () => {
+    if (input.value) {
+        tasks.push(input.value);
+        let li = document.createElement("li");
+        li.innerText = tasks.pop();
+        ul.appendChild(li);
+        input.value = "";
+        li.addEventListener("click", () => {
+            li.classList.toggle("done");
+        })
 
-btn.addEventListener("click",()=>{
-    if(input.value){
-        createItem();
-    };
-})
-   
-
-input.addEventListener("keypress", (e)=>{
-    if (e.key === "Enter"){
-       createItem();
     }
-})
+};
+
+btn.addEventListener("click", () => {
+    addTask();
+});
+
+
+input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        addTask();
+    };
+});
 
