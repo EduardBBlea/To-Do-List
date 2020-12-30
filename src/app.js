@@ -8,7 +8,7 @@ function startApp () {
     [],
     document.querySelector(".todo-wrapper"),
   );
-
+ 
   btn.addEventListener("click", () => {
     if(!input.value) return;
     todoManager.addTodo(input.value);

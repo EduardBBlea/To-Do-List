@@ -11,14 +11,37 @@
  }
 
  .darken {
+     display: flex;
+     flex-direction: row-reverse;
      background-color: rgb(38, 70, 83, 0.8);
      color: white;
      height: 100%;
      padding: 50px 10px;
+     
  }
 
  .primary-text {
      color: #f4a261 ;
+ }
+
+ .counter {
+
+    background: #264653;
+     width: 200px;
+     height: 120px;
+     border: 2px solid #2a9d8f;
+     text-align: center;
+     padding: 1rem;
+ }
+ .counter h3{
+     padding:10px;
+ }
+
+ .count {
+    
+    font-size: 2rem;
+    font-weight: bold;
+    
  }
 
  .appFace {
@@ -80,3 +103,25 @@ li {
  button:hover, li:hover {
      cursor: pointer;
  }
+
+
+ #toast {
+    visibility: hidden;
+    min-width: 200px;
+    height: 50px;
+    background: #264653;
+    border: 2px solid #2a9d8f;
+    padding: 14px;
+    font-size: 1.2rem;
+    font-weight:bold;
+    z-index: 1;
+    transition: all .7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateX(-300px);
+    opacity: 0;
+}
+ 
+#toast.show-toast {
+  visibility: visible !important;
+  transform: translateX(0);
+  opacity: 1;
+}

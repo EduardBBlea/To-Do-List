@@ -16,6 +16,13 @@ const updateTodos = (list, wrapper) => {
   });
   wrapper.innerHTML = "";
   wrapper.appendChild(frag);
+
+  const remainingTodos = list.filter(({isDone})=> !isDone).length;
+  document.querySelector(".count").innerText = remainingTodos;
+
+
+
+
 };
 
 
@@ -29,6 +36,17 @@ const todoManager = () => {
 
   let todos = [];
   let todosWrapper = null;
+
+  const showToast = (text = "Added a new task") => {
+    let toast = document.querySelector("#toast");
+    const descr = toast.querySelector(".description");
+    descr.innerHTML = `Added: ${text}`;
+    toast.className= "show-toast";
+    setTimeout(function(){
+      toast.classList.toggle("show-toast");
+    }, 4000);
+  };
+
 
   const toggleTodo = (todoId) => {
     const newTodos = todos.map(({ text, isDone, id }) => {
@@ -49,13 +67,17 @@ const todoManager = () => {
         console.error(new Error("ToDo Description Missing"));
         return;
       }
+      
       const id = todos.length;
       todos.push({
         text: description,
         isDone,
         id,
       });
+      showToast(description);
+      
       updateTodos(todos, todosWrapper);
+      
       return id;
     },
     removedTodo: (todoId) => {
