@@ -37,12 +37,14 @@ const todoManager = () => {
   let todos = [];
   let todosWrapper = null;
 
-  const showToast = () => {
+  const showToast = (text = "Added a new task") => {
     let toast = document.querySelector("#toast");
+    const descr = toast.querySelector(".description");
+    descr.innerHTML = `Added: ${text}`;
     toast.className= "show-toast";
     setTimeout(function(){
-      toast.className = toast.className.replace("show-toast", "");
-    }, 1000);
+      toast.classList.toggle("show-toast");
+    }, 4000);
   };
 
 
@@ -72,7 +74,7 @@ const todoManager = () => {
         isDone,
         id,
       });
-      showToast();
+      showToast(description);
       
       updateTodos(todos, todosWrapper);
       
