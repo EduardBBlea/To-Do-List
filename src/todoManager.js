@@ -16,6 +16,13 @@ const updateTodos = (list, wrapper) => {
   });
   wrapper.innerHTML = "";
   wrapper.appendChild(frag);
+
+  const remainingTodos = list.filter(({isDone})=> !isDone).length;
+  document.querySelector(".count").innerText = remainingTodos;
+
+
+
+
 };
 
 
@@ -29,6 +36,15 @@ const todoManager = () => {
 
   let todos = [];
   let todosWrapper = null;
+
+  const showToast = () => {
+    let toast = document.querySelector("#toast");
+    toast.className= "show-toast";
+    setTimeout(function(){
+      toast.className = toast.className.replace("show-bar", "");
+    }, 3000);
+  };
+
 
   const toggleTodo = (todoId) => {
     const newTodos = todos.map(({ text, isDone, id }) => {
@@ -49,13 +65,17 @@ const todoManager = () => {
         console.error(new Error("ToDo Description Missing"));
         return;
       }
+      
       const id = todos.length;
       todos.push({
         text: description,
         isDone,
         id,
       });
+      showToast();
+      
       updateTodos(todos, todosWrapper);
+      
       return id;
     },
     removedTodo: (todoId) => {
