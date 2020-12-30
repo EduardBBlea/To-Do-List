@@ -41,8 +41,8 @@ const todoManager = () => {
     let toast = document.querySelector("#toast");
     toast.className= "show-toast";
     setTimeout(function(){
-      toast.className = toast.className.replace("show-bar", "");
-    }, 3000);
+      toast.className = toast.className.replace("show-toast", "");
+    }, 1000);
   };
 
 
